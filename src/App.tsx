@@ -1,17 +1,17 @@
 import React from 'react';
+import {BrowserRouter,Switch,Route} from 'react-router-dom';
 import './App.css';
 
+import Signup from './Component/User/Signup'
+
+
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>
-          Happy coding!!!
-        </p>
-      </header>
+      <Switch>
+<Route path="/" component={Signup} />
+        </Switch>
     </div>
   );
 }
