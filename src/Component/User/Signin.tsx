@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import {sigIn} from "../auth/index"
 import {useHistory} from "react-router-dom"
+import {toast} from 'react-toastify'
 
 const Signin = () => {
    const [state,setstate] = useState(
@@ -19,6 +20,7 @@ const SignIn = () =>{
 
 if(sigIn(state))
 {
+    toast("Signin successfully",{type:"success"})
     h.push("/home")
 }
 else{

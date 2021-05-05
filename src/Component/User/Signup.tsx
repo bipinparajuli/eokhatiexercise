@@ -1,6 +1,7 @@
 import { stat } from 'fs';
 import React,{useState} from 'react'
 import {Redirect,useHistory} from "react-router-dom"
+import {toast} from "react-toastify"
 
 const Signup = () => {
 
@@ -15,15 +16,11 @@ const h = useHistory()
 const {email,password,confirmpassword} = state;
 
     const fun = ()=> {
-        const a= localStorage.setItem("crediential",JSON.stringify(state));
+    localStorage.setItem("crediential",JSON.stringify(state));
+toast("Registered successfully",{type:"success"})
 
         h.push("/signin")
 
-if(a == undefined)
-{
-    console.log(a)
-    return <Redirect to="/signin" />
-}
 
     }
 
