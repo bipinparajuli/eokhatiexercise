@@ -7,6 +7,7 @@ import Signin from "./Component/User/Signin"
 import Home from "./Component/User/Home"
 import PrivateRoute from './Component/auth/Privateroute'
 import {ToastContainer} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 

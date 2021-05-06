@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import {sigIn} from "../auth/index"
 import {useHistory} from "react-router-dom"
 import {toast} from 'react-toastify'
+import {Button,TextField} from "@material-ui/core"
 
 const Signin = () => {
    const [state,setstate] = useState(
@@ -32,13 +33,17 @@ else{
 
     return (
         <div>
-            <h1>Sign in here</h1>
+            <h1 style={{color:"#383CC1"}}>Sign in here</h1>
 
-Email: <input type="email" onChange={e=>setstate({...state,email:e.target.value})} />
+ <TextField label="Email" variant="outlined" type="email"  onChange={e=>setstate({...state,email:e.target.value})} />
 
-            Password: <input type="password" onChange={e=>setstate({...state,password:e.target.value})} />
+<br/>
+<br/>
+             <TextField label="Password" variant="outlined" type="password" onChange={e=>setstate({...state,password:e.target.value})} />
 
-            <button onClick={SignIn}>Signin</button>
+<br/>
+<br/>
+            <Button variant="contained" color="primary" onClick={SignIn}>Signin</Button>
 
         </div>
     )
