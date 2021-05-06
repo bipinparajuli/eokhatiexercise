@@ -1,12 +1,14 @@
 // for signin
 
-export const sigIn = (formvalue) =>{
+export const sigIn = async (formvalue) =>{
 
-    const storageValue = JSON.parse(localStorage.getItem("crediential"));
+    const storageValue = JSON.parse(localStorage.getItem("crediential" || "{}"));
 
 if(storageValue.email == formvalue.email && storageValue.password == formvalue.password)
 {
-    return true;
+ await localStorage.setItem("signin",true)
+    
+ return true
 }
 else{
     return false;
@@ -21,9 +23,9 @@ export const isAuthenticated = () => {
         return false
     }
 
-    if(localStorage.getItem("crediential"))
+    if(localStorage.getItem("crediential")  )
     {
-        return true
+        return JSON.parse(localStorage.getItem("signin"))
 
     }
 }

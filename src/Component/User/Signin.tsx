@@ -13,19 +13,57 @@ const Signin = () => {
     }
     );
 
+    const [error,seterror] = useState ({
+        emailFormat:"",
+        passwordFormat:"",
+    })
+    
+    const {emailFormat,passwordFormat} = error;
+    
    const h =  useHistory();
 
    const {email,password} = state;
 
 const SignIn = () =>{
 
+    //validation
+
+// email validation
+
+if (! /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email))
+{
+    return seterror({
+       emailFormat:"Please check your email format",
+       passwordFormat:"",
+    })
+
+}
+
+//password validation
+
+//password format
+var regx = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+
+if(! regx.test(password))
+{
+    return seterror({
+       emailFormat:"",
+       passwordFormat:"password must be at least 8 characters long and include at least a number and an alphabet",
+    })
+
+}
+
+
+
+
+//navigating to storage    
 if(sigIn(state))
 {
     toast("Signin successfully",{type:"success"})
     h.push("/home")
 }
 else{
-    console.log("Recheck your crediential");
+    toast("Recheck your crediential",{type:"error"});
 
 }
     
@@ -35,11 +73,16 @@ else{
         <div>
             <h1 style={{color:"#383CC1"}}>Sign in here</h1>
 
- <TextField label="Email" variant="outlined" type="email"  onChange={e=>setstate({...state,email:e.target.value})} />
+            {emailFormat? (<><span style={{color:"red"}}>{emailFormat}</span> <br/> <br/> </>): ""}
+
+ <TextField label="Email" required variant="outlined" type="email"  onChange={e=>setstate({...state,email:e.target.value})} />
 
 <br/>
 <br/>
-             <TextField label="Password" variant="outlined" type="password" onChange={e=>setstate({...state,password:e.target.value})} />
+
+{passwordFormat ? (<><span style={{color:"red"}}>{`${passwordFormat}`}</span> <br/> <br/> </>): ""}
+
+             <TextField label="Password" required variant="outlined" type="password" onChange={e=>setstate({...state,password:e.target.value})} />
 
 <br/>
 <br/>
